@@ -10,6 +10,7 @@ prediction_key = config.PREDICTION_KEY
 def get_pattern_predictions(image_path):
     predictor = CustomVisionPredictionClient(prediction_key, endpoint=endpoint)
 
+    print 'About to OD the image'
     # Open the image and get back the prediction results.
     with open(image_path, mode="rb") as test_data:
         results = predictor.detect_image(project_id, iteration_name, test_data)

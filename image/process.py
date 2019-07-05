@@ -16,6 +16,7 @@ def process_image(folder_path, image_path, filename):
     img = Image.open(image_path).convert('RGB')
 
     prediction_images = process_predictions(img, folder_path, image_path)
+    print prediction_images
 
     processed_images = [folder_path + '/' + filename] + prediction_images
 

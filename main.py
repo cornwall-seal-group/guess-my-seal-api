@@ -57,6 +57,7 @@ def guess_seal_in_image():
             filename = secure_filename(file.filename)
             image_path = os.path.join(folder_path, filename)
             file.save(image_path)
+            print 'Saving image to ' + image_path
 
             processed_images = process_image(folder_path, image_path, filename)
 
