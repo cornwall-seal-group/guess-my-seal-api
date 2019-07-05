@@ -3,9 +3,9 @@ import config
 import os
 
 endpoint = config.ENDPOINT
-project_id = config.PROJECT_ID
-iteration_name = config.ITERATION_NAME
-prediction_key = config.PREDICTION_KEY
+project_id = config.CLASSIFIER_PROJECT_ID
+iteration_name = config.CLASSIFIER_ITERATION_NAME
+prediction_key = config.CLASSIFIER_PREDICTION_KEY
 
 
 def find_seal(image_path):

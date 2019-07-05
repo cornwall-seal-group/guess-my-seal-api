@@ -2,9 +2,9 @@ from azure.cognitiveservices.vision.customvision.prediction import CustomVisionP
 import config
 
 endpoint = config.ENDPOINT
-project_id = config.PROJECT_ID
-iteration_name = config.ITERATION_NAME
-prediction_key = config.PREDICTION_KEY
+project_id = config.OD_PROJECT_ID
+iteration_name = config.OD_ITERATION_NAME
+prediction_key = config.OD_PREDICTION_KEY
 
 
 def get_pattern_predictions(image_path):
