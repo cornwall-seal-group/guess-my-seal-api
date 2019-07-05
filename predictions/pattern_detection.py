@@ -13,6 +13,7 @@ def get_pattern_predictions(image_path):
     print 'About to OD the image ' + image_path
     # Open the image and get back the prediction results.
     with open(image_path, mode="rb") as test_data:
+        print 'Opened file'
         results = predictor.detect_image(project_id, iteration_name, test_data)
 
     print results
