@@ -17,7 +17,7 @@ def process_image(folder_path, image_path, filename):
 
     prediction_images = process_predictions(img, folder_path, image_path)
 
-    processed_images = [folder_path + '/' filename] + prediction_images
+    processed_images = [folder_path + '/' + filename] + prediction_images
 
     # Save metadata of seal and its predictions
     # seal_folder = IMAGES_FOLDER + seal_name
