@@ -1,5 +1,6 @@
 from azure.cognitiveservices.vision.customvision.prediction import CustomVisionPredictionClient
 import config
+import os
 
 endpoint = config.ENDPOINT
 project_id = config.PROJECT_ID
@@ -22,7 +23,8 @@ def id_seal(folder_path, processed_images):
 
     predictions = {}
     for image_path in processed_images:
-        results = find_seal(image_path)
+        full_path = os.path.join(folder_path, image_path)
+        results = find_seal(full_path)
         image_predictions = {}
 
         for prediction in results.predictions:
@@ -30,6 +32,6 @@ def id_seal(folder_path, processed_images):
             print ("\t" + prediction.tag_name +
                    ": {0:.2f}%".format(prediction.probability * 100))
 
-        predictions[image_path] = image_predictions
+        predictions[full_path] = image_predictions
 
     return predictions
