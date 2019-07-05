@@ -49,7 +49,7 @@ def guess_seal_in_image():
         if file and allowed_file(file.filename):
 
             epoch_time = int(time.time())
-            folder_path = IMAGES_FOLDER + epoch_time
+            folder_path = IMAGES_FOLDER + str(epoch_time)
             directory = os.path.dirname(folder_path)
             os.makedirs(directory)
 
@@ -57,9 +57,10 @@ def guess_seal_in_image():
             image_path = os.path.join(folder_path, filename)
             file.save(image_path)
 
-            process_image(app, folder_path, image_path, filename)
+            processed_images = process_image(
+                app, folder_path, image_path, filename)
 
-    return {"seal": request.form['seal'], "processed_images": processed_images}
+    return {"processed_images": processed_images}
 
 
 if __name__ == '__main__':
