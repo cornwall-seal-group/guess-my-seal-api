@@ -50,7 +50,7 @@ def guess_seal_in_image():
 
             epoch_time = int(time.time())
             folder_path = IMAGES_FOLDER + str(epoch_time) + '/'
-            print folder_path
+
             directory = os.path.dirname(folder_path)
             os.makedirs(directory)
 
@@ -58,8 +58,7 @@ def guess_seal_in_image():
             image_path = os.path.join(folder_path, filename)
             file.save(image_path)
 
-            processed_images = process_image(
-                app, folder_path, image_path, filename)
+            processed_images = process_image(folder_path, image_path, filename)
 
     return {"processed_images": processed_images}
 
