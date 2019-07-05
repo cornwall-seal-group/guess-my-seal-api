@@ -49,7 +49,8 @@ def guess_seal_in_image():
         if file and allowed_file(file.filename):
 
             epoch_time = int(time.time())
-            folder_path = IMAGES_FOLDER + str(epoch_time)
+            folder_path = IMAGES_FOLDER + str(epoch_time) + '/'
+            print folder_path
             directory = os.path.dirname(folder_path)
             os.makedirs(directory)
 
