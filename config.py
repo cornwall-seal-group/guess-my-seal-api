@@ -8,4 +8,4 @@ CLASSIFIER_ITERATION_NAME = ''
 CLASSIFIER_PREDICTION_KEY = ''
 
 ENDPOINT = ''
-IMAGES_FOLDER = '~/guessed-images/'
+IMAGES_FOLDER = '../guessed-images/'
