@@ -16,9 +16,6 @@ def process_image(folder_path, image_path, filename):
     img = Image.open(image_path).convert('RGB')
 
     prediction_images = process_predictions(img, folder_path, image_path)
-    print prediction_images
-
-    processed_images = [folder_path + '/' + filename] + prediction_images
 
     # Save metadata of seal and its predictions
     # seal_folder = IMAGES_FOLDER + seal_name
@@ -27,7 +24,7 @@ def process_image(folder_path, image_path, filename):
     # # Save seal name for reference so we know what seals we have images for
     # store_seal_metadata(IMAGES_FOLDER, seal_name)
 
-    return processed_images
+    return prediction_images
 
 
 def process_predictions(img, folder_path, original_image_path):

@@ -4,6 +4,7 @@ import os
 import time
 import config
 from image.process import process_image
+from classifier.id import id_seal
 from werkzeug.utils import secure_filename
 import shutil
 
@@ -34,7 +35,7 @@ def guess_seal_in_image():
 
     # send image for object detection and get predictions
     # create an image for each prediction and save in folder
-    data = {}
+
     if request.method == 'POST':
 
         # check if the post request has the file part
@@ -59,9 +60,12 @@ def guess_seal_in_image():
             file.save(image_path)
             print 'Saving image to ' + image_path
 
-            processed_images = process_image(folder_path, image_path, filename)
+            prediction_images = process_image(
+                folder_path, image_path, filename)
 
-    return {"processed_images": processed_images}
+            ids = id_seal(folder_path, prediction_images)
+
+    return {"matches": ids}
 
 
 if __name__ == '__main__':
