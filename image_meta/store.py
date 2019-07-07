@@ -1,7 +1,7 @@
 import json
 import csv
 import config
-ITERATION_ID = config.ITERATION_ID
+ITERATION_ID = config.OD_ITERATION_ID
 
 
 def store_seal_img_metadata(folder, seal_name, processed_images):
