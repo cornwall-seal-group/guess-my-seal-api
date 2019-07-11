@@ -8,6 +8,8 @@ from image_meta.store import store_seal_img_metadata, store_seal_metadata
 import config
 
 IMAGES_FOLDER = config.IMAGES_FOLDER
+MIN_IMG_WIDTH = config.MIN_IMG_WIDTH
+MIN_IMG_HEIGHT = config.MIN_IMG_HEIGHT
 EXT = '.jpg'
 
 
@@ -38,16 +40,26 @@ def process_predictions(img, folder_path, original_image_path):
     for prediction in predictions:
 
         cropped_img = crop_image(img, prediction)
-        normalised_img = normalise_image(cropped_img)
 
-        # Create unique name for img (seal + index + prediction probability)
-        predicted_img_name = str(prediction_index) + \
-            '-' + str(prediction.probability) + EXT
+        use_image = True
+        width, height = cropped_img.size
+        if width < MIN_IMG_WIDTH:
+            use_image = False
+        if height < MIN_IMG_HEIGHT:
+            use_image = False
 
-        save_normalised_image(predicted_img_name, normalised_img, folder_path)
+        if use_image:
+            normalised_img = normalise_image(cropped_img)
 
-        processed_images.append(predicted_img_name)
-        prediction_index += 1
+            # Create unique name for img (seal + index + prediction probability)
+            predicted_img_name = str(prediction_index) + \
+                '-' + str(prediction.probability) + EXT
+
+            save_normalised_image(predicted_img_name,
+                                  normalised_img, folder_path)
+
+            processed_images.append(predicted_img_name)
+            prediction_index += 1
 
     return processed_images
 
