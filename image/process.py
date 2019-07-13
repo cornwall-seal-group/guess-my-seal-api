@@ -39,27 +39,29 @@ def process_predictions(img, folder_path, original_image_path):
     # Loop through all the predictions
     for prediction in predictions:
 
-        cropped_img = crop_image(img, prediction)
+        # Only use predicted image if over 10% probability
+        if prediction.probability > 0.1:
+            cropped_img = crop_image(img, prediction)
 
-        use_image = True
-        width, height = cropped_img.size
-        if width < MIN_IMG_WIDTH:
-            use_image = False
-        if height < MIN_IMG_HEIGHT:
-            use_image = False
+            use_image = True
+            width, height = cropped_img.size
+            if width < MIN_IMG_WIDTH:
+                use_image = False
+            if height < MIN_IMG_HEIGHT:
+                use_image = False
 
-        if use_image:
-            normalised_img = normalise_image(cropped_img)
+            if use_image:
+                normalised_img = normalise_image(cropped_img)
 
-            # Create unique name for img (seal + index + prediction probability)
-            predicted_img_name = str(prediction_index) + \
-                '-' + str(prediction.probability) + EXT
+                # Create unique name for img (seal + index + prediction probability)
+                predicted_img_name = str(prediction_index) + \
+                    '-' + str(prediction.probability) + EXT
 
-            save_normalised_image(predicted_img_name,
-                                  normalised_img, folder_path)
+                save_normalised_image(predicted_img_name,
+                                      normalised_img, folder_path)
 
-            processed_images.append(predicted_img_name)
-            prediction_index += 1
+                processed_images.append(predicted_img_name)
+                prediction_index += 1
 
     return processed_images
 
